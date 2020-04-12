@@ -9,9 +9,9 @@ class Post(models.Model):
 
 class PostLike(models.Model):
     person = models.ManyToManyField(User,related_name='person_liked')
-    tweet = models.ForeignKey(Post,null=True,related_name='likes', on_delete=models.CASCADE,)
+    tweet = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE,)
 
 
-class PostUnlike(models.Model):
+class PostDislike(models.Model):
     person = models.ManyToManyField(User,related_name='person_unliked')
-    tweet = models.ForeignKey(Post,null=True,related_name='unlikes', on_delete=models.CASCADE,)
+    tweet = models.ForeignKey(Post,null=True,related_name='dislikes', on_delete=models.CASCADE,)

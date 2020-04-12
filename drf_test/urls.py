@@ -17,7 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from api import views
 
+from django.urls import include, path
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'posts', views.PostViewSet)
+
+
 urlpatterns = [
+	path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('hello/', views.HelloView.as_view(), name='hello'),
 ]
