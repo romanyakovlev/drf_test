@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from api.models import Post
+from api.models import Post, PostLike
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
 from rest_framework.decorators import action
@@ -12,7 +12,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'username', 'email', 'groups']
 
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Post
 		fields = ['text', 'author', 'date', 'likes', 'dislikes']
@@ -22,3 +22,8 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 		author = Post(**validated_data)
 		author.save()
 		return author
+
+class PostLikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostLike
+        fields = ['person', 'tweet', 'date']
