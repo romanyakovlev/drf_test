@@ -14,6 +14,7 @@ from rest_framework.decorators import action
 from rest_framework import status
 
 
+
 class UserViewSet(viewsets.ModelViewSet):
 
 	queryset = User.objects.all().order_by('-date_joined')
@@ -24,8 +25,7 @@ class PostViewSet(viewsets.ModelViewSet):
 	queryset = Post.objects.all()
 	serializer_class = PostSerializer
 
-	@action(detail=True)
-
+	@action(detail=True, methods=['post'])
 	def like(self, request, *args, **kwargs):
 
 		post = self.get_object()
@@ -40,8 +40,7 @@ class PostViewSet(viewsets.ModelViewSet):
 			content = {'message':'post had been already liked'}
 			return Response(content)
 
-	@action(detail=True)
-
+	@action(detail=True, methods=['post'])
 	def dislike(self, request, *args, **kwargs):
 
 		post = self.get_object()
@@ -55,8 +54,3 @@ class PostViewSet(viewsets.ModelViewSet):
 		else:
 			content = {'message':'post had been already liked'}
 			return Response(content)
-
-class PostLikeViewSet(viewsets.ModelViewSet):
-
-	queryset = PostLike.objects.all()
-	serializer_class = PostLikeSerializer

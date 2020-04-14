@@ -23,6 +23,13 @@ class PostSerializer(serializers.ModelSerializer):
 		author.save()
 		return author
 
+	def to_representation(self, instance):
+
+		ret = super().to_representation(instance)
+		print(ret['likes'])
+		ret['likes'], ret['dislikes'] = len(ret['likes']), len(ret['dislikes'])
+		return ret
+
 class PostLikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostLike
