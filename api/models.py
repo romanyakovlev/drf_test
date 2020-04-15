@@ -18,3 +18,7 @@ class PostDislike(models.Model):
     tweet = models.ForeignKey(Post,null=True,related_name='dislikes', on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now = True)
 
+class ActivityProfile(models.Model):
+	person = models.OneToOneField(User, on_delete=models.CASCADE)
+	last_activity = models.DateTimeField(auto_now = True)
+

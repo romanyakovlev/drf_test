@@ -19,14 +19,13 @@ class PostSerializer(serializers.ModelSerializer):
 
 	def create(self, validated_data):
 		validated_data['author'] = self.context['request'].user
-		author = Post(**validated_data)
-		author.save()
-		return author
+		author_post = Post(**validated_data)
+		author_post.save()
+		return author_post
 
 	def to_representation(self, instance):
 
 		ret = super().to_representation(instance)
-		print(ret['likes'])
 		ret['likes'], ret['dislikes'] = len(ret['likes']), len(ret['dislikes'])
 		return ret
 
