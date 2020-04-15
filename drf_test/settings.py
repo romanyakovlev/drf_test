@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -142,6 +143,13 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+JWT_AUTH = {
+
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=60*60*24),
+
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+
+}
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 

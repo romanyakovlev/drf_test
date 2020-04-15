@@ -16,10 +16,14 @@ class PostSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Post
 		fields = ['text', 'author', 'date', 'likes', 'dislikes']
+		extra_kwargs = {
+            'author': {'read_only': True},
+        }
 
 	def create(self, validated_data):
 		validated_data['author'] = self.context['request'].user
-		author_post = Post(**validated_data)
+		print(validated_data)
+		author_post = Post(**{'author': validated_data['author'], 'text': validated_data['text']})
 		author_post.save()
 		return author_post
 
