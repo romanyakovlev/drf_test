@@ -4,7 +4,7 @@ from rest_framework.decorators import action
 from django.contrib.auth.models import User, Group
 from api.models import Post, PostLike, PostDislike, ActivityProfile
 from api.serializers import UserSerializer, PostSerializer, PostLikeSerializer
-
+from rest_framework.views import APIView
 import datetime
 
 
@@ -61,9 +61,6 @@ class PostViewSet(viewsets.ModelViewSet):
 		else:
 			content = {'message':'post had been already liked'}
 			return Response(content)
-
-
-from rest_framework.views import APIView
 
 
 class AnaliticsView(APIView):
