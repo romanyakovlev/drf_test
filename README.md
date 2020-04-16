@@ -20,13 +20,21 @@ $ pip install -r requirements.txt
 ```
 $ python manage.py runserver
 ```
+3. Open config file config.json and change values as you prefer
+```
+{
+    "number_of_users": 4,
+    "max_posts_per_user": 6,
+    "max_likes_per_user": 5
+}
+```
 
-3. Generate test data using python script
+4. Generate test data using python script
 ```
 $ python data_fill_script.py
 ```
 
-4. run django app
+5. run django app
 ```
 $ python manage.py runserver
 ```
